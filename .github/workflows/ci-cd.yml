@@ -1,11 +1,13 @@
 name: Build Game
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   buildForAllSupportedPlatforms:
     name: Build for ${{ matrix.targetPlatform }}
-    if: github.ref == 'refs/heads/' + github.event.repository.default_branch
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -147,5 +149,5 @@ jobs:
         run: |
           echo "::group::Uploading build to OCI Bucket"
           curl -X PUT -T ${{ github.workspace }}/Build-${{ matrix.targetPlatform }}.zip \
-            "${OCI_BUCKET_URL}/asdfasd/Versions/Build-${{ matrix.targetPlatform }}-${{ env.NEW_VERSION }}.zip"
+            "${OCI_BUCKET_URL}/asgfasd/Versions/Build-${{ matrix.targetPlatform }}-${{ env.NEW_VERSION }}.zip"
           echo "::endgroup::"
